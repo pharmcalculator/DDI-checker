@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drug-Drug Interaction Checker</title>
+    <script>
+        function checkInteractions() {
+            var drug1 = document.getElementById("drug1").value;
+            var drug2 = document.getElementById("drug2").value;
+
+            // Perform the drug interaction check
+            var interactionResult = checkDrugInteractions(drug1, drug2);
+
+            // Display the result
+            document.getElementById("interactionResult").innerHTML = interactionResult;
+        }
+
+        function checkDrugInteractions(drug1, drug2) {
+            var drugInteractions = [
+                { drugs: ["Warfarin", "Aspirin"], message: "These drugs may have a potential interaction.", risk: "Moderate risk of bleeding." },
+                { drugs: ["Simvastatin", "Grapefruit Juice"], message: "These drugs may have a potential interaction.", risk: "Increased risk of muscle damage." },
+                { drugs: ["Digoxin", "Verapamil"], message: "These drugs may have a potential interaction.", risk: "Risk of heart rhythm abnormalities." },
+                { drugs: ["Drug A", "Drug B"], message: "These drugs may have a potential interaction.", risk: "Unknown risk." },
+                { drugs: ["Drug X", "Drug Y"], message: "These drugs may have a potential interaction.", risk: "Low risk of side effects." },
+                { drugs: ["Drug C", "Drug D"], message: "These drugs may have a potential interaction.", risk: "Risk of gastrointestinal bleeding." },
+                { drugs: ["Metoprolol", "Propranolol"], message: "These drugs may have a potential interaction.", risk: "Increased risk of low blood pressure." },
+                { drugs: ["Citalopram", "Tramadol"], message: "These drugs may have a potential interaction.", risk: "Risk of serotonin syndrome." },
+                { drugs: ["Lisinopril", "Potassium Supplements"], message: "These drugs may have a potential interaction.", risk: "Increased risk of high potassium levels." },
+                { drugs: ["Alprazolam", "Alcohol"], message: "These drugs may have a potential interaction.", risk: "Increased risk of central nervous system depression." },
+                { drugs: ["Omeprazole", "Clopidogrel"], message: "These drugs may have a potential interaction.", risk: "Decreased effectiveness of clopidogrel." },
+                { drugs: ["Metformin", "Contrast Dye"], message: "These drugs may have a potential interaction.", risk: "Increased risk of kidney damage." },
+                { drugs: ["Ibuprofen", "Lithium"], message: "These drugs may have a potential interaction.", risk: "Increased risk of lithium toxicity." },
+                { drugs: ["Amlodipine", "Atorvastatin"], message: "These drugs may have a potential interaction.", risk: "Increased risk of muscle pain and weakness." },
+                { drugs: ["Methotrexate", "NSAIDs"], message: "These drugs may have a potential interaction.", risk: "Increased risk of methotrexate toxicity." },
+                { drugs: ["Levothyroxine", "Calcium Supplements"], message: "These drugs may have a potential interaction.", risk: "Decreased absorption of levothyroxine." },
+                { drugs: ["Ranitidine", "Simvastatin"], message: "These drugs may have a potential interaction.", risk: "Increased risk of muscle damage." },
+                { drugs: ["Furosemide", "Lithium"], message: "These drugs may have a potential interaction.", risk: "Increased risk of lithium toxicity." },
+                { drugs: ["Phenytoin", "Valproic Acid"], message: "These drugs may have a potential interaction.", risk: "Increased risk of phenytoin toxicity." },
+                { drugs: ["Amoxicillin", "Oral Contraceptives"], message: "These drugs may have a potential interaction.", risk: "Decreased effectiveness of oral contraceptives." },
+                // Add more drug interaction pairs as needed
+            ];
+
+            if (!drug1 || !drug2) {
+                return "Please enter valid drug names.";
+            }
+
+            drug1 = drug1.toLowerCase();
+            drug2 = drug2.toLowerCase();
+
+            for (var i = 0; i < drugInteractions.length; i++) {
+                var interaction = drugInteractions[i];
+                if ((interaction.drugs[0].toLowerCase() === drug1 && interaction.drugs[1].toLowerCase() === drug2) ||
+                    (interaction.drugs[0].toLowerCase() === drug2 && interaction.drugs[1].toLowerCase() === drug1)) {
+                    return interaction.message + " Potentialrisk:```" + interaction.risk;
+                }
+            }
+
+            return "No known interaction between these drugs.";
+        }
+    </script>
+</head>
+<body>
+    <h1>Drug-Drug Interaction Checker</h1>
+    <p>Enter two drug names to check for potential interactions:</p>
+    <label for="drug1">Drug 1:</label>
+    <input type="text" id="drug1" name="drug1"><br><br>
+    <label for="drug2">Drug 2:</label>
+    <input type="text" id="drug2" name="drug2"><br><br>
+    <button onclick="checkInteractions()">Check Interactions</button>
+    <br><br>
+    <div id="interactionResult"></div>
+    <p><b>Disclaimer:</b> This drug interaction checker is for informational purposes only and should not be considered medical advice. Always consult with a healthcare professional or pharmacist before taking any medication or combining medications. The information provided here is based on general knowledge and may not include all possible drug interactions. The authors and developers of this tool are not responsible for any consequences arising from the use of this information.</p>
+</body>
+</html>
+
